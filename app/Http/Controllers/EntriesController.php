@@ -48,7 +48,6 @@ class EntriesController extends Controller
 
     public function edit(Entry $entry)
     {
-
         $attributes = request()->validate([
             'title' => 'required',
             'content' => 'required',
