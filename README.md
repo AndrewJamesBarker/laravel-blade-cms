@@ -139,6 +139,8 @@ You will need to look up the email addresses in the ```user``` table and the def
 
 Full tutorial URL: https://codeadam.ca/learning/php-cms-laravel.html
 
+* database - http://localhost:8888/phpMyAdmin5/index.php
+
 <a href="https://codeadam.ca">
 <img src="https://codeadam.ca/images/code-block.png" width="100">
 </a>
