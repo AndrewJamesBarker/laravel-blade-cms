@@ -30,15 +30,6 @@
             @endif
         </div>
 
-        <div class="w3-margin-bottom">
-            <label for="slug">Slug:</label>
-            <input type="text" name="slug" id="slug" value="{{old('slug', $project->slug)}}" required>
-
-            @if ($errors->first('slug'))
-                <br>
-                <span class="w3-text-red">{{$errors->first('slug')}}</span>
-            @endif
-        </div>
 
         <div class="w3-margin-bottom">
             <label for="content">Content:</label>
@@ -67,6 +58,16 @@
             @endif
         </div>
 
+        <div class="w3-margin-bottom">
+            <label for="topic_id">Topic/Skill:</label>
+           
+                @foreach ($topics as $topic)
+                    <input type="checkbox" value="{{$topic->id}}" name="topics[]"
+                        {{$topic->id == old('topic_id', $project->topic_id) ? 'checked' : ''}}>
+                        {{$topic->title}}        
+                @endforeach
+        </div>
+                
         <button type="submit" class="w3-button w3-green">Edit Project</button>
 
     </form>

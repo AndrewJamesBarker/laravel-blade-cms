@@ -7,6 +7,7 @@ use App\Http\Controllers\TypesController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EntriesController;
+use App\Http\Controllers\TopicsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,3 +67,10 @@ Route::post('/console/entries/add', [EntriesController::class, 'add'])->middlewa
 Route::get('/console/entries/edit/{entry:id}', [EntriesController::class, 'editForm'])->where('entry', '[0-9]+')->middleware('auth');
 Route::post('/console/entries/edit/{entry:id}', [EntriesController::class, 'edit'])->where('entry', '[0-9]+')->middleware('auth');
 Route::get('/console/entries/delete/{entry:id}', [EntriesController::class, 'delete'])->where('entry', '[0-9]+')->middleware('auth');
+
+Route::get('/console/topics/list', [TopicsController::class, 'list'])->middleware('auth');
+Route::get('/console/topics/add', [TopicsController::class, 'addForm'])->middleware('auth');
+Route::post('/console/topics/add', [TopicsController::class, 'add'])->middleware('auth');
+Route::get('/console/topics/edit/{topic:id}', [TopicsController::class, 'editForm'])->where('topic', '[0-9]+')->middleware('auth');
+Route::post('/console/topics/edit/{topic:id}', [TopicsController::class, 'edit'])->where('topic', '[0-9]+')->middleware('auth');
+Route::get('/console/topics/delete/{topic:id}', [TopicsController::class, 'delete'])->where('topic', '[0-9]+')->middleware('auth');

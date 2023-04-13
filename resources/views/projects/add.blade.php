@@ -30,7 +30,7 @@
             @endif
         </div>
 
-        <div class="w3-margin-bottom">
+        <!-- <div class="w3-margin-bottom">
             <label for="slug">Slug:</label>
             <input type="text" name="slug" id="slug" value="{{old('slug')}}" required>
 
@@ -38,7 +38,7 @@
                 <br>
                 <span class="w3-text-red">{{$errors->first('slug')}}</span>
             @endif
-        </div>
+        </div> -->
 
         <div class="w3-margin-bottom">
             <label for="content">Content:</label>
@@ -65,6 +65,18 @@
                 <br>
                 <span class="w3-text-red">{{$errors->first('type_id')}}</span>
             @endif
+        </div>
+
+        <div class="w3-margin-bottom">
+            <label for="topic_id">Topic/Skill:</label>
+           
+                @foreach ($topics as $topic)
+                    <input type="checkbox" value="{{$topic->id}}" name="topics[]"
+                        {{$topic->id == old('topic_id') ? 'checked' : ''}}>
+                        {{$topic->title}}
+                   
+                @endforeach
+           
         </div>
 
         <button type="submit" class="w3-button w3-green">Add Project</button>

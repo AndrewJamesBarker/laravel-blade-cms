@@ -18,7 +18,7 @@
 
         <div class="w3-margin-bottom">
             <label for="image">Image:</label>
-            <input type="file" name="image" id="image" value="{{old('image')}}" required>
+            <input type="file" name="image" id="image" value="{{old('image')}}">
             
             @if ($errors->first('image'))
                 <br>

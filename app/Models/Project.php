@@ -18,15 +18,29 @@ class Project extends Model
         'title',
         'url',
         'content',
-        'slug',
+        // 'slug',
         'image',
         'type_id',
+        'topic_id',
         'user_id',
     ];
+
+
+    public function projectTopics()
+    {
+        return $this->belongsToMany(Topic::class);
+    }
+
+
 
     public function type()
     {
         return $this->belongsTo(Type::class, 'type_id');
+    }
+
+    public function topic()
+    {
+        return $this->belongsTo(Type::class, 'topic_id');
     }
 
     public function user()
@@ -34,8 +48,8 @@ class Project extends Model
         return $this->belongsTo(USer::class, 'user_id');
     }
     
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
+    // public function getRouteKeyName()
+    // {
+    //     return 'slug';
+    // }
 }

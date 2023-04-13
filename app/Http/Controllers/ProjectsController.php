@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use App\Models\Project;
 use App\Models\Type;
+use App\Models\ProjectTopic;
+use App\Models\Topic;
 
 class ProjectsController extends Controller
 {
@@ -23,28 +25,39 @@ class ProjectsController extends Controller
     {
         return view('projects.add', [
             'types' => Type::all(),
+            'topics' => Topic::all(), 
         ]);
     }
     
     public function add()
     {
-
+      
         $attributes = request()->validate([
             'title' => 'required',
-            'slug' => 'required|unique:projects|regex:/^[A-z\-]+$/',
+            // 'slug' => 'nullable|unique:projects|regex:/^[A-z\-]+$/',
             'url' => 'nullable|url',
             'content' => 'required',
             'type_id' => 'required',
+            'topics' => 'nullable',
         ]);
 
         $project = new Project();
         $project->title = $attributes['title'];
-        $project->slug = $attributes['slug'];
+        // $project->slug = $attributes['slug'];
         $project->url = $attributes['url'];
         $project->content = $attributes['content'];
         $project->type_id = $attributes['type_id'];
+        // $project->topic_id = $attributes['topic_id'];
         $project->user_id = Auth::user()->id;
         $project->save();
+
+        if(isset($attributes['topics']))
+        {
+            foreach($attributes['topics'] as $topic)
+            {
+                $project->projectTopics()->attach($topic);
+            }        
+        }
 
         return redirect('/console/projects/list')
             ->with('message', 'Project has been added!');
@@ -55,6 +68,7 @@ class ProjectsController extends Controller
         return view('projects.edit', [
             'project' => $project,
             'types' => Type::all(),
+            'topics' => Topic::all(), 
         ]);
     }
 
@@ -63,22 +77,32 @@ class ProjectsController extends Controller
 
         $attributes = request()->validate([
             'title' => 'required',
-            'slug' => [
-                'required',
-                Rule::unique('projects')->ignore($project->id),
-                'regex:/^[A-z\-]+$/',
-            ],
+            // 'slug' => [
+            //     'nullable',
+            //     Rule::unique('projects')->ignore($project->id),
+            //     'regex:/^[A-z\-]+$/',
+            // ],
             'url' => 'nullable|url',
             'content' => 'required',
             'type_id' => 'required',
+            'topics' => 'nullable',
         ]);
 
         $project->title = $attributes['title'];
-        $project->slug = $attributes['slug'];
+        // $project->slug = $attributes['slug'];
         $project->url = $attributes['url'];
         $project->content = $attributes['content'];
         $project->type_id = $attributes['type_id'];
+        // $project->topic_id = $attributes['topic_id'];
         $project->save();
+
+        if(isset($attributes['topics']))
+        {
+            foreach($attributes['topics'] as $topic)
+            {
+                $project->projectTopics()->attach($topic);
+            }        
+        }
 
         return redirect('/console/projects/list')
             ->with('message', 'Project has been edited!');
@@ -109,7 +133,7 @@ class ProjectsController extends Controller
     {
 
         $attributes = request()->validate([
-            'image' => 'required|image',
+            'image' => 'nullable|image',
         ]);
 
         if($project->image)
