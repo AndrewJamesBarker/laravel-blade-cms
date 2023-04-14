@@ -8,6 +8,7 @@ use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EntriesController;
 use App\Http\Controllers\TopicsController;
+use App\Http\Controllers\EducationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,3 +75,10 @@ Route::post('/console/topics/add', [TopicsController::class, 'add'])->middleware
 Route::get('/console/topics/edit/{topic:id}', [TopicsController::class, 'editForm'])->where('topic', '[0-9]+')->middleware('auth');
 Route::post('/console/topics/edit/{topic:id}', [TopicsController::class, 'edit'])->where('topic', '[0-9]+')->middleware('auth');
 Route::get('/console/topics/delete/{topic:id}', [TopicsController::class, 'delete'])->where('topic', '[0-9]+')->middleware('auth');
+
+Route::get('/console/education/list', [EducationController::class, 'list'])->middleware('auth');
+Route::get('/console/education/add', [EducationController::class, 'addForm'])->middleware('auth');
+Route::post('/console/education/add', [EducationController::class, 'add'])->middleware('auth');
+Route::get('/console/education/edit/{education:id}', [EducationController::class, 'editForm'])->where('education', '[0-9]+')->middleware('auth');
+Route::post('/console/education/edit/{education:id}', [EducationController::class, 'edit'])->where('education', '[0-9]+')->middleware('auth');
+Route::get('/console/education/delete/{education:id}', [EducationController::class, 'delete'])->where('education', '[0-9]+')->middleware('auth');

@@ -66,8 +66,11 @@
                         {{$topic->id == old('topic_id', $project->topic_id) ? 'checked' : ''}}>
                         {{$topic->title}}        
                 @endforeach
+                
         </div>
                 
+    
+
         <button type="submit" class="w3-button w3-green">Edit Project</button>
 
     </form>
