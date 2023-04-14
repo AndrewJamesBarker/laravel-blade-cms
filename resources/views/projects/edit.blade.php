@@ -63,10 +63,9 @@
            
                 @foreach ($topics as $topic)
                     <input type="checkbox" value="{{$topic->id}}" name="topics[]"
-                        {{$topic->id == old('topic_id', $project->topic_id) ? 'checked' : ''}}>
+                        {{$topic->id == old('topic', $project->topic) ? 'checked' : ''}}>
                         {{$topic->title}}        
-                @endforeach
-                
+                @endforeach                
         </div>
                 
     
