@@ -65,11 +65,10 @@
                     <input type="checkbox" value="{{$topic->id}}" name="topics[]"
                         {{$topic->id == old('topic', $project->topic) ? 'checked' : ''}}>
                         {{$topic->title}}        
-                @endforeach                
+                @endforeach
+                
         </div>
                 
-    
-
         <button type="submit" class="w3-button w3-green">Edit Project</button>
 
     </form>

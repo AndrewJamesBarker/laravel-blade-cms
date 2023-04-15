@@ -9,8 +9,8 @@ class ProjectTopic extends Model
 {
     use HasFactory;
     
-    public function projects(): HasMany
-    {
-        return $this->hasMany(Topic::class);
-    } 
+    // public function projects(): HasMany
+    // {
+    //     return $this->hasMany(Topic::class);
+    // } 
 }

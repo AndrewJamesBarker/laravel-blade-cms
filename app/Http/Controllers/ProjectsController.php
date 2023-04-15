@@ -93,7 +93,7 @@ class ProjectsController extends Controller
         $project->url = $attributes['url'];
         $project->content = $attributes['content'];
         $project->type_id = $attributes['type_id'];
-        // $project->topic_id = $attributes['topics'];
+        // $project->topic_id = $attributes['topic_id'];
         $project->save();
 
         if(isset($attributes['topics']))
